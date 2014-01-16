@@ -1,0 +1,61 @@
+\name{bhl_booksearch}
+\alias{bhl_booksearch}
+\title{Search for titles and items in BHL.}
+\usage{
+bhl_booksearch(title = NULL, lname = NULL, volume = NULL,
+  edition = NULL, year = NULL, collectionid = NULL, language = NULL,
+  format = "json", output = "list", key = NULL, callopts = list())
+}
+\arguments{
+  \item{title}{string to search for in the title
+  (character)}
+
+  \item{lname}{last name to search for (character)}
+
+  \item{volume}{volume to search for (numeric)}
+
+  \item{edition}{edition to search for (character)}
+
+  \item{year}{year to search for, four characters, e.g,
+  1970 (numeric)}
+
+  \item{collectionid}{collection identifier to search for
+  (numeric)}
+
+  \item{language}{language to search for (character)}
+
+  \item{format}{either XML ('xml') or JSON ('json') format.
+  If output='list', format is forced to equal 'json'}
+
+  \item{output}{Return a list, raw json or xml, or parsed
+  data (character).  Default: 'list'}
+
+  \item{key}{your BHL API key, either enter, or loads from
+  .Rprofile}
+
+  \item{callopts}{Call options passed on to httr::GET.}
+}
+\description{
+Search criteria includes title, author last name, volume,
+edition, year of publication, subject, language code, and
+collection identifier. Valid language codes and collection
+identifiers can be obtained from the getlanguages and
+getcollections functions. If year of publication is
+specified, it should be a 4-digit year. To execute a
+search, you must supply at least a title, author last name,
+or collection identifier.
+}
+\note{
+Use \code{\link{bhl_getcollections}} or
+\code{\link{bhl_getlanguages}} to get acceptable terms
+}
+\examples{
+\dontrun{
+bhl_booksearch(title='Selborne', lname='White', volume=2, edition='new', year=1825,
+   collectionid=4, language='eng')
+bhl_booksearch(title='evolution', year=2000, output='raw')
+bhl_booksearch('evolution', year=2000, output='raw', format='xml')
+bhl_booksearch('evolution', year=2000, output='parsed', format="xml")
+}
+}
+
