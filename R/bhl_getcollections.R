@@ -1,32 +1,23 @@
-#' Get a list of collections which are used to group titles and items. A single 
-#'    collection may contain either titles or items, but not both.
+#' Get a list of collections which are used to group titles and items. A single
+#' collection may contain either titles or items, but not both.
 #'
-#' @import httr
-#' @importFrom RJSONIO fromJSON
-#' @importFrom plyr compact ldply
-#' @inheritParams bhl_authorsearch
+#' @export
+#' @param as (character) Return a list ("list"), json ("json"), xml ("xml"), or parsed table
+#' ("table", default). Note that \code{as="table"} can give different data format back
+#' depending on the function - for example, sometimes a data.frame and sometimes a
+#' character vector.
+#' @param key Your BHL API key, either enter, or loads from your \code{.Renviron} as \code{BHL_KEY}
+#' or from \code{.Rprofile} as \code{bhl_key}.
+#' @param ... Curl options passed on to \code{\link[httr]{GET}}
+#'
 #' @examples \dontrun{
 #' bhl_getcollections()
-#' bhl_getcollections(out = 'raw')
+#' bhl_getcollections(as = 'list')
+#' bhl_getcollections(as = 'json')
+#' bhl_getcollections(as = 'xml')
 #' }
-#' @export
-bhl_getcollections <- function(format = "json", output='list',
-  key = NULL, callopts = list()) 
-{
-  if(output=='list') format='json'
-  key <- getkey(key)
-  url = "http://www.biodiversitylibrary.org/api2/httpquery.ashx"
-  args <- compact(list(op = "GetCollections", apikey = key, format = format))
-  out <- GET(url, query = args, callopts)
-  stop_for_status(out)
-  tt <- content(out, as="text")
-  if(output=='raw'){
-    return( tt )
-  } else if(output=='list')
-  {
-    return( fromJSON(I(tt)) )
-  } else
-  {
-    return( ldply(tt$Result, function(x) as.data.frame(x)) )
-  }
+
+bhl_getcollections <- function(as = 'table', key = NULL, ...) {
+  args <- bhlc(list(op = "GetCollections", apikey = check_key(key), format = as_f(as)))
+  bhl_GET(as, args, ...)
 }

@@ -1,29 +1,21 @@
-#' Return metadata about a title. You may choose to include a list of 
-#'    the items (books) associated  with the title.
+#' Get title metadata
 #'
-#' @import httr
-#' @importFrom plyr compact
-#' @importFrom XML xmlTreeParse
+#' Return metadata about a title. You may choose to include a list of
+#' the items (books) associated  with the title.
+#'
+#' @export
 #' @param titleid the identifier of an individual title (numeric)
 #' @param items (logical) TRUE of FALSE (default) to inclue items
-#' @inheritParams bhl_authorsearch
+#' @inheritParams bhl_getcollections
 #' @examples \dontrun{
 #' bhl_gettitlemetadata(1726, TRUE)
-#' bhl_gettitlemetadata(1726, output='raw')
-#' bhl_gettitlemetadata(1726, format='xml', output='raw')
-#' bhl_gettitlemetadata(1726, format='xml', output='parsed')
+#' bhl_gettitlemetadata(1726, as='list')
+#' bhl_gettitlemetadata(1726, as='xml')
 #' }
-#' @export
-bhl_gettitlemetadata <- function(titleid = NA, items = FALSE, format = "json",
-  output='list', key = NULL, callopts=list()) 
-{
-  if(output=='list') format='json'
-  key <- getkey(key)
-  url = "http://www.biodiversitylibrary.org/api2/httpquery.ashx"
-  args <- compact(list(op = "GetTitleMetadata", apikey = key, format = format,
-                       titleid=titleid, items=items))
-  out <- GET(url, query = args, callopts)
-  stop_for_status(out)
-  tt <- content(out, as="text")
-  return_results(tt, output, format)
+
+bhl_gettitlemetadata <- function(titleid = NA, items = FALSE, as = "list", key = NULL, ...) {
+  as <- match.arg(as, c("list","json","xml"))
+  args <- bhlc(list(op = "GetTitleMetadata", apikey = check_key(key), format = as_f(as),
+                       titleid = titleid, items = items))
+  bhl_GET(as, args, ...)
 }

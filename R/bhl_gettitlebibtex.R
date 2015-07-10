@@ -1,26 +1,16 @@
 #' Return a citation for a title, using the BibTeX format.
 #'
-#' @import httr
-#' @importFrom plyr compact
-#' @importFrom XML xmlTreeParse
+#' @export
 #' @param titleid the identifier of an individual title (numeric)
-#' @inheritParams bhl_authorsearch
+#' @inheritParams bhl_getcollections
 #' @examples \dontrun{
 #' bhl_gettitlebibTex(1726)
-#' bhl_gettitlebibTex(1726, output='raw')
-#' bhl_gettitlebibTex(1726, format='xml', output='raw')
-#' bhl_gettitlebibTex(1726, format='xml', output='parsed')
+#' bhl_gettitlebibTex(1726, 'xml')
+#' bhl_gettitlebibTex(1726, 'json')
 #' }
-#' @export
-bhl_gettitlebibTex <- function(titleid = NULL, format = "json", 
-  output='list', key = NULL, callopts=list()) 
+
+bhl_gettitlebibTex <- function(titleid = NULL, as = "list", key = NULL, ...)
 {
-  if(output=='list') format='json'
-  key <- getkey(key)
-  url = "http://www.biodiversitylibrary.org/api2/httpquery.ashx"
-  args <- compact(list(op = "GetTitleBibTex", apikey = key, format = format, titleid=titleid))
-  out <- GET(url, query = args, callopts)
-  stop_for_status(out)
-  tt <- content(out, as="text")
-  return_results(tt, output, format)
+  args <- bhlc(list(op = "GetTitleBibTex", apikey = check_key(key), format = as_f(as), titleid=titleid))
+  bhl_GET(as, args, ...)
 }

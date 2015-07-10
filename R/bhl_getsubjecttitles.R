@@ -1,26 +1,17 @@
 #' Return a list of titles associated with a subject.
 #'
-#' @import httr
-#' @importFrom plyr compact
-#' @importFrom XML xmlTreeParse
+#' @export
 #' @param subject the full or partial subject for which to search (character)
-#' @inheritParams bhl_authorsearch
+#' @inheritParams bhl_getcollections
 #' @examples \dontrun{
 #' bhl_getsubjecttitles('diptera')
-#' bhl_getsubjecttitles('diptera', 'xml', 'raw')
-#' bhl_getsubjecttitles('diptera', 'xml', 'parsed')
+#' bhl_getsubjecttitles('diptera', 'xml')
+#' bhl_getsubjecttitles('diptera', 'json')
 #' }
-#' @export
-bhl_getsubjecttitles <- function(subject = NULL, format = "json", output = 'list', 
-  key = NULL, callopts = list()) 
+
+bhl_getsubjecttitles <- function(subject = NULL, as = "table", key = NULL, ...)
 {
-  if(output=='list') format='json'
-  key <- getkey(key)
-  url = "http://www.biodiversitylibrary.org/api2/httpquery.ashx"
-  args <- compact(list(op = "GetSubjectTitles", apikey = key, format = format,
+  args <- bhlc(list(op = "GetSubjectTitles", apikey = check_key(key), format = as_f(as),
                        subject = subject))
-  out <- GET(url, query = args, callopts)
-  stop_for_status(out)
-  tt <- content(out, as="text")
-  return_results(tt, output, format)
+  bhl_GET(as, args, ...)
 }

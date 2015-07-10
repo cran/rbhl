@@ -1,31 +1,27 @@
 # tests for bhl_bioherlib fxn in rbhl
 context("bhl_bioherlib")
 
-library(XML)
-library(RJSONIO)
+test_that("bhl_bioherlib returns", {
+	skip_on_cran()
 
-tt <- bhl_bioherlib(method='GetPageMetadata', pageid=1328690, ocr=TRUE, names=TRUE)
-uu <- bhl_bioherlib(method='GetPageMetadata', pageid=1328690, ocr=TRUE, names=TRUE, format="xml", output='raw')
-vv <- bhl_bioherlib(method='GetPageMetadata', pageid=1328690, ocr=TRUE, names=TRUE, output='raw')
+	tt <- bhl_bioherlib(method='GetPageMetadata', pageid=1328690, ocr=TRUE, names=TRUE)
+	uu <- bhl_bioherlib(method='GetPageMetadata', pageid=1328690, ocr=TRUE, names=TRUE, as="list")
+	vv <- bhl_bioherlib(method='GetPageMetadata', pageid=1328690, ocr=TRUE, names=TRUE, as='xml')
 
-test_that("bhl_bioherlib returns the correct class", {
-	expect_is(tt, "list")
-	expect_is(tt$Status, "character")
-	expect_is(tt$Result, "list")
-	expect_is(tt$Result$ItemID, "numeric")
-  
-	expect_is(uu, "character")
-	expect_is(xmlParse(uu), "XMLInternalDocument")
-	expect_is(xpathApply(xmlParse(uu), '//Result'), "XMLNodeSet")
-  
+	# correct classes
+	expect_is(tt$data, "data.frame")
+
+  expect_is(uu$Status, "character")
+	expect_is(uu$Result, "list")
+	expect_is(uu$Result$ItemID, "integer")
+
 	expect_is(vv, "character")
-	expect_is(fromJSON(vv), "list")
-	expect_is(fromJSON(vv)$Result, "list")
-})
+	expect_is(xmlParse(vv), "XMLInternalDocument")
+	expect_is(xpathApply(xmlParse(vv), '//Result'), "XMLNodeSet")
 
-test_that("bhl_bioherlib returns the correct dimensions", {
-  expect_equal(length(tt), 3)
-  expect_equal(length(tt$Status), 1)
-  expect_equal(length(uu), 1)
+	# correct dimensions
+  expect_equal(NCOL(tt$data), 15)
+  expect_equal(length(uu$Status), 1)
+  expect_equal(length(uu), 3)
   expect_equal(length(vv), 1)
 })

@@ -1,26 +1,16 @@
 #' Return a list of a title's items (books).
 #'
-#' @import httr
-#' @importFrom plyr compact
-#' @importFrom XML xmlTreeParse
+#' @export
 #' @param titleid the identifier of an individual title (numeric)
-#' @inheritParams bhl_authorsearch
+#' @inheritParams bhl_getcollections
 #' @examples \dontrun{
 #' bhl_gettitleitems(1726)
-#' bhl_gettitleitems(1726, output='raw')
-#' bhl_gettitleitems(1726, format='xml', output='raw')
-#' bhl_gettitleitems(1726, format='xml', output='parsed')
+#' bhl_gettitleitems(1726, as='xml')
+#' bhl_gettitleitems(1726, as='list')
 #' }
-#' @export
-bhl_gettitleitems <- function(titleid = NULL, format = "json", output='list',
-  key = NULL, callopts=list()) 
+
+bhl_gettitleitems <- function(titleid, as = "table", key = NULL, ...)
 {
-  if(output=='list') format='json'
-  key <- getkey(key)
-  url = "http://www.biodiversitylibrary.org/api2/httpquery.ashx"
-  args <- compact(list(op = "GetTitleItems", apikey = key, format = format, titleid=titleid))
-  out <- GET(url, query = args, callopts)
-  stop_for_status(out)
-  tt <- content(out, as="text")
-  return_results(tt, output, format)
+  args <- bhlc(list(op = "GetTitleItems", apikey = check_key(key), format = as_f(as), titleid=titleid))
+  bhl_GET(as, args, ...)
 }
