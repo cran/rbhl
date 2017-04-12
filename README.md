@@ -5,8 +5,9 @@ rbhl
 
 [![Build Status](https://api.travis-ci.org/ropensci/rbhl.png)](https://travis-ci.org/ropensci/rbhl)
 [![Build status](https://ci.appveyor.com/api/projects/status/ej5u9mdirg1yyteg/branch/master)](https://ci.appveyor.com/project/sckott/rbhl/branch/master)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/rbhl?color=2ECC71)](https://github.com/metacran/cranlogs.app)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/rbhl?color=2ECC71)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/rbhl)](https://cran.r-project.org/package=rbhl)
+[![codecov.io](https://codecov.io/github/ropensci/rbhl/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rbhl?branch=master)
 
 `rbhl` is an R interface to the Biodiversity Heritage Library API.
 
@@ -228,7 +229,7 @@ bhl_booksearch(title='Selborne', lname='White', volume=2, edition='new', year=18
 
 ```r
 bhl_titlesearchsimple('husbandry')
-#> # A tibble: 153 × 22
+#> # A tibble: 154 × 22
 #>    TitleID BibliographicLevel
 #> *    <int>              <chr>
 #> 1    25997     Monograph/Item
@@ -241,7 +242,7 @@ bhl_titlesearchsimple('husbandry')
 #> 8    58205     Monograph/Item
 #> 9    51946     Monograph/Item
 #> 10   55665     Monograph/Item
-#> # ... with 143 more rows, and 20 more variables: FullTitle <chr>,
+#> # ... with 144 more rows, and 20 more variables: FullTitle <chr>,
 #> #   ShortTitle <chr>, SortTitle <chr>, PartNumber <chr>, PartName <chr>,
 #> #   CallNumber <lgl>, Edition <chr>, PublisherPlace <chr>,
 #> #   PublisherName <chr>, PublicationDate <chr>,

@@ -2,8 +2,8 @@
 % Please edit documentation in R/rbhl-package.R
 \docType{package}
 \name{rbhl-package}
-\alias{rbhl}
 \alias{rbhl-package}
+\alias{rbhl}
 \title{R interface to the Biodiversity Heritage Library API.}
 \description{
 R interface to the Biodiversity Heritage Library API.
@@ -12,12 +12,13 @@ R interface to the Biodiversity Heritage Library API.
 You need an API key to use the Biodiversity Heritage Library API. Get your
 BHL API key at \url{http://www.biodiversitylibrary.org/getapikey.aspx}.
 Put your API key in your .Rprofile file using e.g.,
-`options(BioHerLibKey = "YOURBHLAPIKEY")`, and the functions within
+\code{options(BioHerLibKey = "YOURBHLAPIKEY")}, and the functions within
 this package will be able to use your API key without you having to enter
 it every time you run a search.
+
+See \link{rbhl-defunct} for defunct functions.
 }
 \author{
 Scott Chamberlain \email{myrmecocystus@gmail.com}
 }
 \keyword{package}
-

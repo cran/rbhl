@@ -1,15 +1,14 @@
 #' R interface to the Biodiversity Heritage Library API.
 #'
 #' You need an API key to use the Biodiversity Heritage Library API. Get your
-#' BHL API key at \url{http://www.biodiversitylibrary.org/getapikey.aspx}.
+#' BHL API key at <http://www.biodiversitylibrary.org/getapikey.aspx>.
 #' Put your API key in your .Rprofile file using e.g.,
 #' `options(BioHerLibKey = "YOURBHLAPIKEY")`, and the functions within
 #' this package will be able to use your API key without you having to enter
 #' it every time you run a search.
 #'
-#' @importFrom httr GET content stop_for_status
-#' @importFrom jsonlite fromJSON
-#' @importFrom plyr rbind.fill
+#' See [rbhl-defunct] for defunct functions.
+#'
 #' @importFrom xml2 xml_find_all read_xml xml_children
 #' @name rbhl-package
 #' @aliases rbhl
@@ -24,4 +23,16 @@ NULL
 #' @name rbhlmethods
 #' @docType data
 #' @keywords datasets
+NULL
+
+#' Defunct functions in rbhl
+#'
+#' These functions are gone, no longer available.
+#'
+#' \itemize{
+#'  \item `bhl_getpartendnote()`: BHL removed this API method.
+#'  \item `bhl_gettitleendnote()`: BHL removed this API method.
+#' }
+#'
+#' @name rbhl-defunct
 NULL
