@@ -4,8 +4,14 @@
 \alias{bhl_getpagemetadata}
 \title{Return metadata about a page.}
 \usage{
-bhl_getpagemetadata(page = NULL, ocr = FALSE, names = FALSE,
-  as = "table", key = NULL, ...)
+bhl_getpagemetadata(
+  page = NULL,
+  ocr = FALSE,
+  names = FALSE,
+  as = "table",
+  key = NULL,
+  ...
+)
 }
 \arguments{
 \item{page}{page number to get}
@@ -26,7 +32,7 @@ or from \code{.Rprofile} as \code{bhl_key}.}
 \item{...}{Curl options passed on to \code{\link[crul:HttpClient]{crul::HttpClient()}}}
 }
 \description{
-You may choose to include the OCR text and a list of names found on the page.
+You may choose to include the OCR text and a list of names found on the page
 }
 \examples{
 \dontrun{

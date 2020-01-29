@@ -4,8 +4,7 @@
 \alias{bhl_gettitlemetadata}
 \title{Get title metadata}
 \usage{
-bhl_gettitlemetadata(titleid = NA, items = FALSE, as = "list",
-  key = NULL, ...)
+bhl_gettitlemetadata(titleid = NA, items = FALSE, as = "list", key = NULL, ...)
 }
 \arguments{
 \item{titleid}{the identifier of an individual title (numeric)}
@@ -29,7 +28,7 @@ the items (books) associated  with the title.
 }
 \examples{
 \dontrun{
-bhl_gettitlemetadata(1726, TRUE)
+bhl_gettitlemetadata(1726, items = TRUE)
 bhl_gettitlemetadata(1726, as='list')
 bhl_gettitlemetadata(1726, as='xml')
 }

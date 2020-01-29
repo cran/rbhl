@@ -8,7 +8,7 @@
 #' @param items (logical) TRUE of FALSE (default) to inclue items
 #' @inheritParams bhl_getcollections
 #' @examples \dontrun{
-#' bhl_gettitlemetadata(1726, TRUE)
+#' bhl_gettitlemetadata(1726, items = TRUE)
 #' bhl_gettitlemetadata(1726, as='list')
 #' bhl_gettitlemetadata(1726, as='xml')
 #' }
@@ -18,6 +18,6 @@ bhl_gettitlemetadata <- function(titleid = NA, items = FALSE, as = "list",
 
   as <- match.arg(as, c("list","json","xml"))
   args <- bhlc(list(op = "GetTitleMetadata", apikey = check_key(key),
-                    format = as_f(as), titleid = titleid, items = items))
+                    format = as_f(as), id = titleid, items = items))
   bhl_GET(as, args, ...)
 }

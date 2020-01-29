@@ -1,11 +1,10 @@
-context("bhl_subjectsearch")
-
-test_that("bhl_subjectsearch works", {
+test_that("bhl_subjectsearch", {
   skip_on_cran()
-
-  tt <- bhl_subjectsearch('diptera')
-  vv <- bhl_subjectsearch('diptera', as='xml')
-  zz <- bhl_subjectsearch('diptera', as='json')
+  vcr::use_cassette("bhl_subjectsearch", {
+    tt <- bhl_subjectsearch('diptera')
+    vv <- bhl_subjectsearch('diptera', as='xml')
+    zz <- bhl_subjectsearch('diptera', as='json')
+  })
 
   # the correct classes
   expect_is(tt, "data.frame")

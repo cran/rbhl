@@ -4,8 +4,15 @@
 \alias{bhl_getitemmetadata}
 \title{Return metadata about an item.}
 \usage{
-bhl_getitemmetadata(itemid = NULL, pages = TRUE, ocr = FALSE,
-  parts = FALSE, as = "table", key = NULL, ...)
+bhl_getitemmetadata(
+  itemid = NULL,
+  pages = TRUE,
+  ocr = FALSE,
+  parts = FALSE,
+  as = "table",
+  key = NULL,
+  ...
+)
 }
 \arguments{
 \item{itemid}{item id (character)}
@@ -40,7 +47,6 @@ bhl_getitemmetadata('16800', TRUE)
 bhl_getitemmetadata('16800', TRUE, as='xml')
 bhl_getitemmetadata('16800', TRUE, as='json')
 bhl_getitemmetadata('16800', TRUE, as='list')
-
-# bhl_getitemmetadata(20419, pages=FALSE, parts=TRUE)
+bhl_getitemmetadata(20419, pages=FALSE, parts=TRUE)
 }
 }

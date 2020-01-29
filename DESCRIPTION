@@ -1,26 +1,33 @@
 Package: rbhl
 Title: Interface to the 'Biodiversity' 'Heritage' Library
 Description: Interface to 'Biodiversity' 'Heritage' Library ('BHL')
-    (<http://www.biodiversitylibrary.org/>) 'API'
-    (<http://www.biodiversitylibrary.org/api2/docs/docs.html>). 'BHL' is a
+    (<https://www.biodiversitylibrary.org/>) API
+    (<https://www.biodiversitylibrary.org/docs/api3.html>). 'BHL' is a
     repository of 'digitized' literature on 'biodiversity'
     studies, including 'floras', research papers, and more.
 Type: Package
-Version: 0.8.0
+Version: 0.9.0
 License: MIT + file LICENSE
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
-    email = "myrmecocystus@gmail.com"))
-URL: https://github.com/ropensci/rbhl
+    email = "myrmecocystus@gmail.com",
+    comment = c(ORCID="0000-0003-1444-9135")))
+URL: https://github.com/ropensci/rbhl (devel)
+        https://docs.ropensci.org/rbhl (documentation)
 BugReports: https://github.com/ropensci/rbhl/issues
 LazyData: true
 VignetteBuilder: knitr
-Imports: crul (>= 0.3.4), xml2 (>= 1.0.0), jsonlite (>= 1.1), plyr (>=
-        1.8.4), tibble (>= 1.2)
-Suggests: roxygen2 (>= 6.0.1), testthat, knitr
-RoxygenNote: 6.0.1
+Encoding: UTF-8
+Language: en-US
+Imports: crul, xml2, jsonlite, plyr, tibble
+Suggests: testthat, knitr, vcr
+RoxygenNote: 7.0.2
+X-schema.org-applicationCategory: Biodiversity
+X-schema.org-keywords: BHL, library, API, web-services, conservation,
+        species, taxonomy, OCR, text-mining
+X-schema.org-isPartOf: https://ropensci.org
 NeedsCompilation: no
-Packaged: 2017-04-12 21:01:21 UTC; sacmac
-Author: Scott Chamberlain [aut, cre]
+Packaged: 2020-01-29 01:53:57 UTC; sckott
+Author: Scott Chamberlain [aut, cre] (<https://orcid.org/0000-0003-1444-9135>)
 Maintainer: Scott Chamberlain <myrmecocystus@gmail.com>
 Repository: CRAN
-Date/Publication: 2017-04-12 22:28:59 UTC
+Date/Publication: 2020-01-29 06:10:10 UTC

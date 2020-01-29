@@ -1,11 +1,10 @@
-context("bhl_namesearch")
-
-test_that("bhl_namesearch works", {
+test_that("bhl_namesearch", {
   skip_on_cran()
-
-  tt <- bhl_namesearch('poa annua')
-  vv <- bhl_namesearch('poa annua', as='xml')
-  zz <- bhl_namesearch('poa annua', as='json')
+  vcr::use_cassette("bhl_namesearch", {
+    tt <- bhl_namesearch('poa annua')
+    vv <- bhl_namesearch('poa annua', as='xml')
+    zz <- bhl_namesearch('poa annua', as='json')
+  })
 
   # the correct classes
   expect_is(tt, "data.frame")
